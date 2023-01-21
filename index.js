@@ -1,28 +1,31 @@
-const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require("node-telegram-bot-api");
+const express = require("express");
+const cors = require("cors");
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '5878374380:AAFM_6BLaBT2vU7PKn79Yo4UBp15QhWv9fI';
+const token = "5878374380:AAFM_6BLaBT2vU7PKn79Yo4UBp15QhWv9fI";
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, { polling: true });
+const app = express();
 
 // Listen for any kind of message. There are different kinds of
 // messages.
-bot.on('message', async msg => {
+bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
 
-  if (text === '/start') {
+  if (text === "/start") {
     await bot.sendMessage(
       chatId,
-      'Ниже появится кнопка, заполните пожалуйста форму',
+      "Ниже появится кнопка, заполните пожалуйста форму",
       {
         reply_markup: {
           keyboard: [
             [
               {
-                text: 'Заполнить форму',
-                web_app: { url: webAppUrl + '/Modal' },
+                text: "Заполнить форму",
+                web_app: { url: webAppUrl + "/Modal" },
               },
             ],
           ],
@@ -31,5 +34,5 @@ bot.on('message', async msg => {
     );
   }
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Received your message');
+  bot.sendMessage(chatId, "Received your message");
 });
