@@ -9,6 +9,8 @@ const token = "5878374380:AAFM_6BLaBT2vU7PKn79Yo4UBp15QhWv9fI";
 const bot = new TelegramBot(token, { polling: true });
 const app = express();
 
+app.use(express.json());
+app.use(cors());
 // Listen for any kind of message. There are different kinds of
 // messages.
 bot.on("message", async (msg) => {
