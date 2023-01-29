@@ -28,7 +28,6 @@ bot.on("message", async (msg) => {
             [
               {
                 text: "Заполнить форму",
-                web_app: { url: webAppUrl + "/modal" },
               },
             ],
           ],
@@ -37,7 +36,18 @@ bot.on("message", async (msg) => {
     );
   }
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, "Received your message");
+  // bot.sendMessage(chatId, "Received your message");
+  if (msg?.web_app_data?.data) {
+    try {
+      const data = JSON.parse(msg?.web_app_data?.data);
+      console.log(data);
+      await bot.sendMessage(chatId, "Ваше имя: " + data?.name);
+      await bot.sendMessage(chatId, "Ваш телефон/ник: " + data?.phone);
+      await bot.sendMessage(chatId, "Ваш email: " + data?.email);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 });
 
 const PORT = 8000;
