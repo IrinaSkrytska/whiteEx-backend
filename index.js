@@ -4,7 +4,7 @@ const cors = require("cors");
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = "5878374380:AAFM_6BLaBT2vU7PKn79Yo4UBp15QhWv9fI";
-const webAppUrl = "https://iridescent-axolotl-0bbd64.netlify.app/";
+const webAppUrl = "https://main--iridescent-axolotl-0bbd64.netlify.app/";
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, { polling: true });
@@ -39,3 +39,7 @@ bot.on("message", async (msg) => {
   // send a message to the chat acknowledging receipt of their message
   bot.sendMessage(chatId, "Received your message");
 });
+
+const PORT = 8000;
+
+app.listen(PORT, () => console.log("server started on PORT " + PORT));
