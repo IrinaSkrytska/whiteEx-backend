@@ -28,7 +28,7 @@ bot.on("message", async (msg) => {
             [
               {
                 text: "Заполнить форму",
-                web_app: { url: webAppUrl + "/Modal" },
+                web_app: { url: webAppUrl + "/modal" },
               },
             ],
           ],
